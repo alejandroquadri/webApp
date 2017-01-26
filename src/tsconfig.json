@@ -14,5 +14,11 @@
     "typeRoots": [
       "../node_modules/@types"
     ]
-  }
+  },
+  "filesGlob": [
+   "main.ts",
+   "typings.d.ts",
+   "app/**/*.ts",
+   "!app/**/*.spec.ts"
+ ]
 }
