@@ -16,9 +16,8 @@
     ]
   },
   "filesGlob": [
-   "main.ts",
-   "typings.d.ts",
-   "app/**/*.ts",
-   "!app/**/*.spec.ts"
- ]
+    "**/*.ts",
+    "**/*.tsx",
+    "!node_modules/**"
+  ]
 }
