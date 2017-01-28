@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 
-
+// el array del router queda vacio porque se definen las rutas en cada uno de los modulos en cada carpeta
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
 
 @NgModule({
