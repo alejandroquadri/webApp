@@ -1,9 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AlertModule } from 'ng2-bootstrap';
 
 import { LoginComponent } from './login.component';
+import { SharedModule } from '../shared';
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -15,8 +15,9 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     homeRouting,
-    AlertModule.forRoot(),
+    SharedModule
   ],
   declarations: [
     LoginComponent
