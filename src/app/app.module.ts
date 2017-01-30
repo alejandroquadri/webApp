@@ -8,7 +8,11 @@ import { AlertModule } from 'ng2-bootstrap';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
-import { SharedModule } from './shared';
+import {
+  SharedModule,
+  AuthService,
+  AuthGuard
+} from './shared';
 
 // el array del router queda vacio porque se definen las rutas en cada uno de los modulos en cada carpeta
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
@@ -27,7 +31,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     LoginModule,
     HomeModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
