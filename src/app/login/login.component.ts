@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // models
-import { Login } from '../shared';
+import { Login, AuthService } from '../shared';
 // validators
 import { EmailValidator } from '../shared';
 
@@ -32,7 +33,9 @@ export class LoginComponent implements OnInit {
     };
 
     constructor(
-      public fb: FormBuilder
+      public fb: FormBuilder,
+      public authService: AuthService,
+      public router: Router
     ) {}
 
     ngOnInit() {
@@ -75,8 +78,17 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
       console.log('Submit!', this.loginForm.value.email , this.loginForm.value.password);
+      this.login(this.loginForm.value.email , this.loginForm.value.password);
       this.user = new Login('', '');
       this.buildForm();
+    }
+
+    login(email: string, password: string) {
+      this.authService.loginUser(email, password)
+      .then( authData => {
+        console.log('va al home');
+        this.router.navigate(['/']);
+      });
     }
 
 }

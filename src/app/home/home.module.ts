@@ -6,6 +6,7 @@ import {
   SharedModule,
   AuthGuard
 } from '../shared';
+import { AuthResolver } from './auth-resolve.service';
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -23,6 +24,8 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
     HomeComponent
   ],
   providers: [
+    AuthResolver,
+    AuthGuard
   ]
 })
 export class HomeModule {}

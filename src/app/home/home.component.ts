@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../shared';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  auth;
+
+  constructor(
+    public authService: AuthService
+  ) {
+    console.log('construye home.component');
+  }
 
   ngOnInit() {
+    console.log('inicia home.component', this.auth);
+  }
+
+  logOut() {
+    console.log('logout');
+    this.authService.logoutUser();
   }
 
 }

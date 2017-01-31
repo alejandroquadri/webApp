@@ -24,7 +24,6 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
   declarations: [
     LoginComponent
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class LoginModule {}
