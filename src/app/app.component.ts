@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AngularFire } from 'angularfire2';
 
 import { AuthService } from './shared';
@@ -19,6 +18,7 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
     console.log('construye app.component');
+
     af.auth.subscribe( user => {
       if (!user) {
         this.router.navigate(['/login']);

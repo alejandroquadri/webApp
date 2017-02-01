@@ -31,6 +31,9 @@ export class LoginComponent implements OnInit {
         'minlength': 'La contraseña debe tener al menos 6 caracteres',
       }
     };
+    loginPage = true;
+    signupPage = false;
+    resetPasswordPage = false;
 
     constructor(
       public fb: FormBuilder,
@@ -85,10 +88,30 @@ export class LoginComponent implements OnInit {
 
     login(email: string, password: string) {
       this.authService.loginUser(email, password)
-      .then( authData => {
+      .then(
+        authData => {
         console.log('va al home');
         this.router.navigate(['/']);
-      });
+      },
+      err => console.log('error', err)
+      );
     }
 
+    showLogin() {
+      this.loginPage = true;
+      this.signupPage = false;
+      this.resetPasswordPage = false;
+    }
+
+    showRegister() {
+      this.loginPage = false;
+      this.signupPage = true;
+      this.resetPasswordPage = false;
+    }
+
+    showResetPassword() {
+      this.loginPage = false;
+      this.signupPage = false;
+      this.resetPasswordPage = true;
+    }
 }

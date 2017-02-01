@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -12,8 +12,11 @@ export class AuthService {
   redirectUrl: string;
   fireAuth: any;
 
-  private currentSubject = new Subject();
-  public current = this.currentSubject.asObservable().distinctUntilChanged();
+  // private currentSubject = new Subject();
+  // public current = this.currentSubject.asObservable().distinctUntilChanged();
+
+  private currentSubject = new ReplaySubject();
+  public current = this.currentSubject.asObservable();
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
@@ -24,7 +27,7 @@ export class AuthService {
     this.getCurrent();
   }
 
-  loginUser(newEmail: string, newPassword: string): any {
+  loginUser(newEmail: string, newPassword: string): firebase.Promise<FirebaseAuthState> {
     return this.af.auth.login({ email: newEmail, password: newPassword });
   }
 

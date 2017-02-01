@@ -3,7 +3,9 @@
 </p>
 
 <div class="container">
-    <h1>Login</h1>
+    <h1 *ngIf="loginPage">Iniciar sesion</h1>
+    <h1 *ngIf="signupPage">Registrarse</h1>
+    <h1 *ngIf="resetPasswordPage">Restablecer contraseña</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
@@ -17,7 +19,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" *ngIf="!resetPasswordPage">
         <label for="password">Contraseña</label>
         <input type="password" class="form-control" id="password" formControlName="password" required>
 
@@ -26,7 +28,27 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-default">Enviar</button>
+      <button type="submit" class="btn btn-default">
+        <span *ngIf="loginPage">Iniciar sesion</span>
+        <span *ngIf="signupPage">Registrarse</span>
+        <span *ngIf="resetPasswordPage">Restablecer</span>
+      </button>
 
     </form>
+
+    <button class="btn btn-link btn-block" (click)="showLogin()" *ngIf="!loginPage">
+     <!-- *ngI`f="!loginPage"> -->
+      Iniciar sesion
+    </button>
+
+    <button class="btn btn-link btn-block" (click)="showRegister()" *ngIf="!signupPage">
+     <!-- *ngIf="!signupPage"> -->
+      Registrarse
+    </button>
+
+    <button class="btn btn-link btn-block" (click)="showResetPassword()" *ngIf="!resetPasswordPage">
+     <!-- *ngIf="!resetPasswordPage"> -->
+      Olvide mi contraseña
+    </button>
+
 </div>
