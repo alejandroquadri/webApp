@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
 
@@ -9,7 +9,7 @@ import { AuthService } from './shared';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'app anda!';
 
   constructor (
@@ -17,17 +17,13 @@ export class AppComponent implements OnInit {
     public af: AngularFire,
     private router: Router
   ) {
-    console.log('construye app.component');
-
-    af.auth.subscribe( user => {
+    this.authService.getUser()
+    .subscribe( user => {
+      console.log(user);
       if (!user) {
         this.router.navigate(['/login']);
       }
     });
-  }
 
-  ngOnInit() {
-    console.log('inicia app.component');
-    this.authService.getCurrent();
   }
 }

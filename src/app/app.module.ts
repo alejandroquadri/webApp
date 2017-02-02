@@ -12,7 +12,10 @@ import { LoginModule } from './login/login.module';
 import {
   SharedModule,
   AuthService,
-  AuthGuard
+  AuthGuard,
+  NoAuthGuard,
+  HeaderComponent,
+  FooterComponent
 } from './shared';
 
 // settings AF2
@@ -35,7 +38,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    NoAuthGuard
   ],
   bootstrap: [AppComponent]
 })

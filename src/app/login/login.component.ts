@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // models
 import { Login, AuthService } from '../shared';
@@ -34,16 +34,44 @@ export class LoginComponent implements OnInit {
     loginPage = true;
     signupPage = false;
     resetPasswordPage = false;
+    authType = '';
 
     constructor(
-      public fb: FormBuilder,
-      public authService: AuthService,
-      public router: Router
+      private fb: FormBuilder,
+      private authService: AuthService,
+      private router: Router,
+      private route: ActivatedRoute
     ) {}
 
     ngOnInit() {
       console.log('Hello LoginPage Page', this.user);
       this.buildForm();
+
+      this.route.url.subscribe(data => {
+        // Get the last piece of the URL
+        this.authType = data[data.length - 1].path;
+        // Set a title for the page accordingly
+
+        switch (this.authType) {
+          case 'login' :
+            this.loginPage = true;
+            this.signupPage = false;
+            this.resetPasswordPage = false;
+          break;
+
+          case 'register' :
+            this.loginPage = false;
+            this.signupPage = true;
+            this.resetPasswordPage = false;
+          break;
+
+          case 'reset' :
+            this.loginPage = false;
+            this.signupPage = false;
+            this.resetPasswordPage = true;
+          break;
+        }
+      });
     }
 
     buildForm() {
@@ -81,7 +109,18 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
       console.log('Submit!', this.loginForm.value.email , this.loginForm.value.password);
-      this.login(this.loginForm.value.email , this.loginForm.value.password);
+      if (this.loginPage) {
+        console.log('va a login', this.loginForm.value.email , this.loginForm.value.password);
+        this.login(this.loginForm.value.email , this.loginForm.value.password);
+      }
+      if (this.signupPage) {
+        console.log('va a signup', this.loginForm.value.email , this.loginForm.value.password);
+        this.signUp(this.loginForm.value.email , this.loginForm.value.password);
+      }
+      if (this.resetPasswordPage) {
+        console.log ('va a reset', this.loginForm.value.email);
+        this.resetPassword(this.loginForm.value.email);
+      }
       this.user = new Login('', '');
       this.buildForm();
     }
@@ -97,21 +136,32 @@ export class LoginComponent implements OnInit {
       );
     }
 
+    signUp(email: string, password: string) {
+      this.authService.signupUser(email, password)
+      .then( authData => {
+        this.router.navigate(['/']);
+      },
+      err => console.log('error', err)
+      );
+    }
+
+    resetPassword(email: string) {
+      this.authService.resetPassword(email)
+      .then(
+        reset => console.log('reseteada', reset),
+        err => console.log('error', err)
+        );
+    }
+
     showLogin() {
-      this.loginPage = true;
-      this.signupPage = false;
-      this.resetPasswordPage = false;
+      this.router.navigate(['/login']);
     }
 
     showRegister() {
-      this.loginPage = false;
-      this.signupPage = true;
-      this.resetPasswordPage = false;
+      this.router.navigate(['/register']);
     }
 
     showResetPassword() {
-      this.loginPage = false;
-      this.signupPage = false;
-      this.resetPasswordPage = true;
+      this.router.navigate(['/reset']);
     }
 }

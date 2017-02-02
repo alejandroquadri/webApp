@@ -4,29 +4,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-
-// import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './article-helpers';
-// import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
-// import { ListErrorsComponent } from './list-errors.component';
+import { ShowAuthedDirective } from './directives/show-authed.directive';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
   ],
   declarations: [
-
+    ShowAuthedDirective
   ],
   exports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    // ArticleListComponent,
-    // ArticleMetaComponent,
-    // ArticlePreviewComponent,
-    // FavoriteButtonComponent,
-    // FollowButtonComponent,
-    // ListErrorsComponent,
+    ShowAuthedDirective
   ]
 })
 export class SharedModule {}
