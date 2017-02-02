@@ -8,7 +8,7 @@ import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
-import { LoginModule } from './login/login.module';
+import { AuthModule } from './auth/auth.module';
 import {
   SharedModule,
   AuthService,
@@ -50,7 +50,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     AlertModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
     SharedModule,
-    LoginModule,
+    AuthModule,
     HomeModule,
   ],
   providers: [

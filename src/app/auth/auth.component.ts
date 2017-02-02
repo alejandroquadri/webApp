@@ -8,11 +8,11 @@ import { Login, AuthService } from '../shared';
 import { EmailValidator } from '../shared';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
     user = new Login('', '');
     submitted = false;
@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-      console.log('Hello LoginPage Page', this.user);
       this.buildForm();
 
       this.route.url.subscribe(data => {

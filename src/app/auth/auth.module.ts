@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login.component';
+import { AuthComponent } from './auth.component';
 import {
   SharedModule,
   NoAuthGuard
@@ -11,17 +11,17 @@ import {
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
   {
     path: 'login',
-    component: LoginComponent,
+    component: AuthComponent,
     canActivate: [NoAuthGuard]
   },
   {
     path: 'register',
-    component: LoginComponent,
+    component: AuthComponent,
     canActivate: [NoAuthGuard]
   },
   {
     path: 'reset',
-    component: LoginComponent,
+    component: AuthComponent,
     canActivate: [NoAuthGuard]
   }
 ]);
@@ -34,8 +34,8 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule
   ],
   declarations: [
-    LoginComponent
+    AuthComponent
   ],
   providers: []
 })
-export class LoginModule {}
+export class AuthModule {}
