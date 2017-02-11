@@ -1,29 +1,30 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home.component';
+import { ProfileComponent } from './profile.component';
 import {
   SharedModule,
   AuthGuard
 } from '../shared';
 
-const homeRouting: ModuleWithProviders = RouterModule.forChild([
+const profileRouting: ModuleWithProviders = RouterModule.forChild([
   {
-    path: '',
-    component: HomeComponent,
+    path: 'profile',
+    component: ProfileComponent,
     canActivate: [AuthGuard]
   }
 ]);
 
 @NgModule({
   imports: [
-    homeRouting,
+    SharedModule,
+    profileRouting,
   ],
   declarations: [
-    HomeComponent
+    ProfileComponent
   ],
   providers: [
     AuthGuard
   ]
 })
-export class HomeModule {}
+export class ProfileModule {}

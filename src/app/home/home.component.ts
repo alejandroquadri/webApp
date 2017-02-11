@@ -9,17 +9,13 @@ import { AuthService } from '../shared';
 })
 export class HomeComponent implements OnInit {
 
-  auth;
-
   constructor(
     public authService: AuthService
   ) {
     console.log('construye home.component');
   }
 
-  ngOnInit() {
-    console.log('inicia home.component', this.auth);
-  }
+  ngOnInit() {}
 
   logOut() {
     console.log('logout');

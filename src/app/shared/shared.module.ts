@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { AlertModule, DropdownModule } from 'ng2-bootstrap';
 
 import { ShowAuthedDirective } from './directives/show-authed.directive';
 
@@ -11,6 +12,9 @@ import { ShowAuthedDirective } from './directives/show-authed.directive';
     CommonModule,
     FormsModule,
     RouterModule,
+    ReactiveFormsModule,
+    AlertModule.forRoot(),
+    DropdownModule.forRoot(),
   ],
   declarations: [
     ShowAuthedDirective
@@ -19,7 +23,10 @@ import { ShowAuthedDirective } from './directives/show-authed.directive';
     CommonModule,
     FormsModule,
     RouterModule,
-    ShowAuthedDirective
+    ShowAuthedDirective,
+    ReactiveFormsModule,
+    AlertModule,
+    DropdownModule
   ]
 })
 export class SharedModule {}

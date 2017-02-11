@@ -3,20 +3,22 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AlertModule } from 'ng2-bootstrap';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
+import { ProfileModule } from './profile/profile.module';
 import {
   SharedModule,
   AuthService,
   AuthGuard,
   NoAuthGuard,
+  ProfileService,
   HeaderComponent,
   FooterComponent
 } from './shared';
+
 
 // settings AF2
 export const firebaseConfig = {
@@ -47,16 +49,17 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     FormsModule,
     HttpModule,
     rootRouting,
-    AlertModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
     SharedModule,
     AuthModule,
     HomeModule,
+    ProfileModule
   ],
   providers: [
     AuthService,
     AuthGuard,
-    NoAuthGuard
+    NoAuthGuard,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

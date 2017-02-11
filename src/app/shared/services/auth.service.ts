@@ -3,14 +3,9 @@ import { AngularFire, FirebaseAuthState, AuthProviders, AuthMethods, AngularFire
 import * as firebase from 'firebase';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/operator/distinctUntilChanged';
 
 @Injectable()
 export class AuthService {
-  isLoggedIn = false;
-
-  private currentSubject = new Subject();
-  public current = this.currentSubject.asObservable().distinctUntilChanged();
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
@@ -29,9 +24,10 @@ export class AuthService {
   isLogged() {
     this.af.auth.subscribe( user => {
       if (user) {
-        this.currentSubject.next(user);
+        console.log('usaurio en auth service isLogged', user);
         this.isAuthenticatedSubject.next(true);
       } else {
+        console.log('no hay usuario');
         this.isAuthenticatedSubject.next(false);
       }
     },
@@ -53,7 +49,7 @@ export class AuthService {
     return this.af.auth.createUser({ email: newEmail, password: newPassword })
     .then(newUser => {
       this.af.database.object(`/coachProfile/${newUser.uid}`)
-      .set({email: newEmail, coach: true, authCoach: false});
+      .set({email: newEmail, authCoach: false});
     });
   }
 

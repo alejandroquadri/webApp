@@ -1,1 +1,3 @@
-export * from './login.model';
+export * from './auth.model';
+export * from './profile.model';
+export * from './fireAuth.model';

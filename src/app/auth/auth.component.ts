@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-// models
-import { Login, AuthService } from '../shared';
-// validators
-import { EmailValidator } from '../shared';
+
+import { Auth, EmailValidator, AuthService } from '../shared';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +12,7 @@ import { EmailValidator } from '../shared';
 })
 export class AuthComponent implements OnInit {
 
-    user = new Login('', '');
+    user = new Auth('', '');
     submitted = false;
     loginForm: FormGroup;
     formErrors = {
@@ -120,7 +118,7 @@ export class AuthComponent implements OnInit {
         console.log ('va a reset', this.loginForm.value.email);
         this.resetPassword(this.loginForm.value.email);
       }
-      this.user = new Login('', '');
+      this.user = new Auth('', '');
       this.buildForm();
     }
 
