@@ -10,7 +10,7 @@ import { AuthService } from '../../services';
 export class HeaderComponent implements OnInit {
 
   constructor(
-  	private authService: AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -18,7 +18,10 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     console.log('logout');
-    this.authService.logoutUser();
+    this.authService.logoutUser()
+    .then(
+      () => console.log('user logged out'),
+      err => console.log('hubo algun problema usuario no pudo desloguearse', err));
   }
 
 }

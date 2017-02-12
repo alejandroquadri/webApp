@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
-
 
 import { Profile, EmailValidator, AuthService, ProfileService } from '../shared';
 
@@ -28,9 +26,9 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.profileService.getProfile()
-    .subscribe( prof => {
-      console.log('profile', prof);
+   this.profileService.fireProfile
+    .subscribe(prof => {
+      console.log('profile component pide el fireProfile', prof);
       this.profileForm.patchValue(prof);
     });
   }
@@ -48,7 +46,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log( 'Submit', this.profileForm.value);
+    console.log('Submit', this.profileForm.value);
     this.update(this.profileForm.value);
   }
 

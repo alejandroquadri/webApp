@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFire, FirebaseAuthState, AuthProviders, AuthMethods, AngularFireAuth } from 'angularfire2';
 import * as firebase from 'firebase';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
@@ -9,6 +10,8 @@ export class AuthService {
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+
+  public uid = '';
 
   constructor(
     public af: AngularFire,
