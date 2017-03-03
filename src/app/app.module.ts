@@ -15,10 +15,10 @@ import {
   AuthGuard,
   NoAuthGuard,
   ProfileService,
+  PatientListService,
   HeaderComponent,
   FooterComponent
 } from './shared';
-
 
 // settings AF2
 export const firebaseConfig = {
@@ -42,7 +42,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +59,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     AuthService,
     AuthGuard,
     NoAuthGuard,
-    ProfileService
+    ProfileService,
+    PatientListService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,10 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DiaryComponent } from './diary/diary.component';
+import { ChatComponent } from './chat/chat.component';
 import {
   SharedModule,
   AuthGuard
@@ -11,16 +15,27 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      }
+    ]
   }
 ]);
 
 @NgModule({
   imports: [
     homeRouting,
+    SharedModule
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
+    PatientListComponent,
+    DiaryComponent,
+    ChatComponent,
+    DashboardComponent
   ],
   providers: [
     AuthGuard
