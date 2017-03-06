@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { PatientListService } from '../../shared';
 
@@ -10,21 +11,19 @@ import { PatientListService } from '../../shared';
 export class PatientListComponent implements OnInit {
 
   patients: any;
-  prueba = ['pepe', 'juanjo', 'jose'];
 
   constructor(
-    public plService: PatientListService
+    private plService: PatientListService,
+    private router: Router
   ) {
     this.patients = this.plService.patientList;
-    console.log(this.patients);
-    console.log(this.prueba);
   }
 
-  ngOnInit() {
-    this.patients
-    .subscribe( patients => {
-      console.log(patients);
-    });
+  ngOnInit() {}
+
+  getPatient(patient) {
+    console.log(patient);
+    this.router.navigate(['/dashboard', patient]);
   }
 
 }

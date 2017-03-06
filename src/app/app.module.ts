@@ -16,6 +16,7 @@ import {
   NoAuthGuard,
   ProfileService,
   PatientListService,
+  DiaryService,
   HeaderComponent,
   FooterComponent
 } from './shared';
@@ -60,7 +61,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     AuthGuard,
     NoAuthGuard,
     ProfileService,
-    PatientListService
+    PatientListService,
+    DiaryService
   ],
   bootstrap: [AppComponent]
 })

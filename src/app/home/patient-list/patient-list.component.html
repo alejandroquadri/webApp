@@ -1,5 +1,5 @@
-<div *ngFor="let patient of patients | async" class="list-group">
-	<a href="#" class="list-group-item">
+<div class="list-group">
+	<a class="list-group-item" *ngFor="let patient of patients | async" (click)="getPatient(patient.uid)">
 		{{ patient.displayName }}
 	</a>
 </div>

@@ -18,7 +18,7 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'dashboard',
+        path: 'dashboard/:id',
         component: DashboardComponent,
       }
     ]
