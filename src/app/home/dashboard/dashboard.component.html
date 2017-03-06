@@ -1,4 +1,25 @@
-<p>
-  dashboard works!
-  {{ patient }}
-</p>
+<div class="container">
+	
+	<div class="col-md-8">
+<!-- 		<p>
+		  dashboard works!
+		  {{ patient }}
+		</p> -->
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" (click)="nav('diary')">Diario</button>
+		  <button type="button" class="btn btn-default" (click)="nav('logs')">Peso</button>
+		  <button type="button" class="btn btn-default" (click)="nav('patient-profile')">Perfil</button>
+		</div>
+
+		<router-outlet></router-outlet>
+
+	</div>
+
+	<div class="col-md-4">
+		<app-chat></app-chat>
+	</div>
+
+</div>
+
+
+

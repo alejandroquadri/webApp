@@ -31,6 +31,9 @@ export class DashboardComponent implements OnInit {
         console.log(diary);
       });
     });
+  }
 
+  nav(dir) {
+    this.router.navigate(['/dashboard', this.patient, dir]);
   }
 }

@@ -4,8 +4,11 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DiaryComponent } from './diary/diary.component';
-import { ChatComponent } from './chat/chat.component';
+import { DiaryComponent } from './dashboard/diary/diary.component';
+import { ChatComponent } from './dashboard/chat/chat.component';
+import { LogsComponent } from './dashboard/logs/logs.component';
+import { PatientProfileComponent } from './dashboard/patient-profile/patient-profile.component';
+
 import {
   SharedModule,
   AuthGuard
@@ -20,6 +23,20 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
       {
         path: 'dashboard/:id',
         component: DashboardComponent,
+        children: [
+          {
+            path: 'diary',
+            component: DiaryComponent,
+          },
+          {
+            path: 'logs',
+            component: LogsComponent,
+          },
+          {
+            path: 'patient-profile',
+            component: PatientProfileComponent,
+          }
+        ]
       }
     ]
   }
@@ -35,7 +52,9 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
     PatientListComponent,
     DiaryComponent,
     ChatComponent,
-    DashboardComponent
+    DashboardComponent,
+    LogsComponent,
+    PatientProfileComponent
   ],
   providers: [
     AuthGuard

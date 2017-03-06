@@ -23,7 +23,7 @@ export class PatientListComponent implements OnInit {
 
   getPatient(patient) {
     console.log(patient);
-    this.router.navigate(['/dashboard', patient]);
+    this.router.navigate(['/dashboard', patient, 'diary']);
   }
 
 }
