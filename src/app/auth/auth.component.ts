@@ -126,7 +126,7 @@ export class AuthComponent implements OnInit {
       this.authService.loginUser(email, password)
       .then(
         authData => {
-        console.log('va al home');
+        console.log('va al home', authData);
         this.router.navigate(['/']);
       },
       err => console.log('error', err)
