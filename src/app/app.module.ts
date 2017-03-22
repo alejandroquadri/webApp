@@ -18,7 +18,8 @@ import {
   PatientListService,
   DiaryService,
   HeaderComponent,
-  FooterComponent
+  FooterComponent,
+  // ObjectIteratePipe
 } from './shared';
 
 // settings AF2
@@ -44,6 +45,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    // ObjectIteratePipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     NoAuthGuard,
     ProfileService,
     PatientListService,
-    DiaryService
+    DiaryService,
+    // ObjectIteratePipe
   ],
   bootstrap: [AppComponent]
 })

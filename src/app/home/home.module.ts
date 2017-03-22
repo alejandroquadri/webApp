@@ -11,7 +11,8 @@ import { PatientProfileComponent } from './dashboard/patient-profile/patient-pro
 
 import {
   SharedModule,
-  AuthGuard
+  AuthGuard,
+  ObjectIteratePipe
 } from '../shared';
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
@@ -45,7 +46,7 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     homeRouting,
-    SharedModule
+    SharedModule.forRoot()
   ],
   declarations: [
     HomeComponent,

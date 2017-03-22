@@ -10,7 +10,7 @@ export class DiaryService {
   ) {}
 
   getDiary(id) {
-    return this.af.database.list(`/diary/${id}`);
+    return this.af.database.object(`/diary/${id}`);
   }
 
 }

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule, DropdownModule } from 'ng2-bootstrap';
 
 import { ShowAuthedDirective } from './directives/show-authed.directive';
+import { ObjectIteratePipe } from './pipes/object-iterate.pipe';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ShowAuthedDirective } from './directives/show-authed.directive';
     DropdownModule.forRoot(),
   ],
   declarations: [
-    ShowAuthedDirective
+    ShowAuthedDirective,
+    ObjectIteratePipe
   ],
   exports: [
     CommonModule,
@@ -26,7 +28,15 @@ import { ShowAuthedDirective } from './directives/show-authed.directive';
     ShowAuthedDirective,
     ReactiveFormsModule,
     AlertModule,
-    DropdownModule
+    DropdownModule,
+    ObjectIteratePipe
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+  static forRoot() {
+      return {
+          ngModule: SharedModule,
+          providers: [],
+      };
+   }
+}

@@ -1,5 +1,19 @@
-<p>
-  diario
-</p>
+<div *ngFor="let log of diary | async | objectIterate:true">
+		<h2>{{ log.$key }}</h2>
+		<div *ngFor="let item of log | objectIterate">
+			<h3>{{ item.meal }}</h3>
 
-<p> {{diary | async | json }}</p>
+			<div class="row" *ngIf="item.webImages">
+			  <div class="col-xs-6 col-md-3" *ngFor="let img of item.webImages">
+			    <a href="#" class="thumbnail">
+			      <img [src]="img">
+			    </a>
+			  </div>
+			</div>
+			
+			<p>{{ item.text }}</p>
+			
+		</div>
+
+</div>
+
