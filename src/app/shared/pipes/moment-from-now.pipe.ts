@@ -3,14 +3,15 @@ import * as moment from 'moment';
 import 'moment/locale/es';
 
 @Pipe({
-  name: 'momentDate'
+  name: 'momentFromNow'
 })
-export class MomentDatePipe implements PipeTransform {
-  transform(value: any, format: string): any {
+export class MomentFromNowPipe implements PipeTransform {
+  transform(value: any, format?: string): any {
     if (value) {
-      return moment(value).format(format);
+      return moment(value).fromNow();
     } else {
       return;
     }
   }
 }
+

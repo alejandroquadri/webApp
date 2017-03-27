@@ -8,6 +8,7 @@ import { AlertModule, DropdownModule } from 'ng2-bootstrap';
 import { ShowAuthedDirective } from './directives/show-authed.directive';
 import { ObjectIteratePipe } from './pipes/object-iterate.pipe';
 import { MomentDatePipe } from './pipes/moment-date.pipe';
+import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { MomentDatePipe } from './pipes/moment-date.pipe';
   declarations: [
     ShowAuthedDirective,
     ObjectIteratePipe,
-    MomentDatePipe
+    MomentDatePipe,
+    MomentFromNowPipe
   ],
   exports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { MomentDatePipe } from './pipes/moment-date.pipe';
     AlertModule,
     DropdownModule,
     ObjectIteratePipe,
-    MomentDatePipe
+    MomentDatePipe,
+    MomentFromNowPipe
   ]
 })
 export class SharedModule {

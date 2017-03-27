@@ -39,7 +39,7 @@
 		</div>
 		<div class="row" *ngIf="item.reviews">
 			<div class="col-md-12" *ngFor="let review of item.reviews | objectIterate:true ">
-				{{ review.name }} a las {{ review.timestamp | momentDate:'HH:mm'}}<br>
+				{{ review.name }} {{ review.timestamp | momentFromNow}}<br>
 				<p>{{ review.message }}</p>
 			</div>
 		</div>
