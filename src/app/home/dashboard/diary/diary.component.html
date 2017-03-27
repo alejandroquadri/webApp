@@ -1,19 +1,52 @@
 <div *ngFor="let log of diary | async | objectIterate:true">
-		<h2>{{ log.$key }}</h2>
-		<div *ngFor="let item of log | objectIterate">
-			<h3>{{ item.meal }}</h3>
+	
+	<div class="row">
+		<h3>{{ log.$key | momentDate:'dddd DD MMMM YYYY'}}</h3>
+	</div>
+		
+	
+	<div *ngFor="let item of log | objectIterate: true">
+		<div class="row"><h4>{{ item.meal }}</h4></div>
+		
+		<div class="row"><p>{{ item.text }}</p></div>
 
-			<div class="row" *ngIf="item.webImages">
-			  <div class="col-xs-6 col-md-3" *ngFor="let img of item.webImages">
-			    <a href="#" class="thumbnail">
-			      <img [src]="img">
-			    </a>
-			  </div>
-			</div>
-			
-			<p>{{ item.text }}</p>
-			
+		<div class="row" *ngIf="item.webImages">
+		  <div class="col-xs-6 col-md-3" *ngFor="let img of item.webImages">
+		    <a class="thumbnail">
+		      <img [src]="img">
+		    </a>
+		  </div>
 		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<i class="fa fa-check-circle reviewIcon" aria-hidden="true"
+				(click)= "rate('ok', log.$key, item.$key)"
+				[ngClass] = "{ 'OKselected': item.rate === 'ok'? true : false }" ></i>
 
+				<i class="fa fa-times-circle reviewIcon" aria-hidden="true"
+				(click)= "rate('notok', log.$key, item.$key)"
+				[ngClass] = "{ 'notOKselected': (item.rate === 'notok'? true : false) }"></i>
+			</div>
+		</div>
+		<div class="row">
+		  <div class="col-md-10">
+		    <textarea [(ngModel)]="review[item.order]" type="text" class="form-control" id="review" placeholder="Devolucion"></textarea>
+		  </div>
+		  <div class="col-md-2">
+		  	<button class="btn btn-default" (click)= " sendReview(item.order, log.$key, item.$key) ">Enviar</button>
+		  </div>
+		</div>
+		<div class="row" *ngIf="item.reviews">
+			<div class="col-md-12" *ngFor="let review of item.reviews | objectIterate:true ">
+				{{ review.name }} a las {{ review.timestamp | momentDate:'HH:mm'}}<br>
+				<p>{{ review.message }}</p>
+			</div>
+		</div>
+		<hr/>
+
+	</div>
 </div>
+
+
 

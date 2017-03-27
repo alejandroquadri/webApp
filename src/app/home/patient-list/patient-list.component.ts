@@ -21,9 +21,8 @@ export class PatientListComponent implements OnInit {
 
   ngOnInit() {}
 
-  getPatient(patient) {
-    console.log(patient);
-    this.router.navigate(['/dashboard', patient, 'diary']);
+  getPatient(patientUid, displayName) {
+    this.router.navigate(['/dashboard', patientUid, 'diary', {displayName: displayName}]);
   }
 
 }

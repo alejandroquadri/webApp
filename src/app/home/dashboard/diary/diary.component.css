@@ -1,0 +1,12 @@
+.reviewIcon {
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.OKselected {
+	color: green
+}
+
+.notOKselected {
+	color: red;
+}

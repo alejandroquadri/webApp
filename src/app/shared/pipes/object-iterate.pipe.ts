@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ObjectIteratePipe implements PipeTransform {
   transform(value: any, key?: boolean, field?: string): any {
-      console.log(value, key, field);
       if (value) {
         const keyArr: any[] = Object.keys(value),
         dataArr = [];
@@ -20,9 +19,6 @@ export class ObjectIteratePipe implements PipeTransform {
             return a[field] > b[field] ? 1 : -1;
           });
         }
-
-        console.log('returned array by pipe', dataArr);
-
         return dataArr;
       } else {
         return;
