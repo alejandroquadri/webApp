@@ -6,6 +6,7 @@
 		
 	
 	<div *ngFor="let item of log | objectIterate: true">
+		
 		<div class="row"><h4>{{ item.meal }}</h4></div>
 		
 		<div class="row"><p>{{ item.text }}</p></div>
@@ -20,23 +21,24 @@
 		
 		<div class="row">
 			<div class="col-md-12">
-				<i class="fa fa-check-circle reviewIcon" aria-hidden="true"
-				(click)= "rate('ok', log.$key, item.$key)"
-				[ngClass] = "{ 'OKselected': item.rate === 'ok'? true : false }" ></i>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<i class="fa fa-check-circle reviewIcon" aria-hidden="true"
+						(click)= "rate('ok', log.$key, item.$key)"
+						[ngClass] = "{ 'OKselected': (item.rate === 'ok'? true : false) }" ></i>
 
-				<i class="fa fa-times-circle reviewIcon" aria-hidden="true"
-				(click)= "rate('notok', log.$key, item.$key)"
-				[ngClass] = "{ 'notOKselected': (item.rate === 'notok'? true : false) }"></i>
+						<i class="fa fa-times-circle reviewIcon" aria-hidden="true"
+						(click)= "rate('notok', log.$key, item.$key)"
+						[ngClass] = "{ 'notOKselected': (item.rate === 'notok'? true : false) }"></i>
+					</span>
+					<input class="form-control" type="text" placeholder="Devolucion" aria-describedby="basic-addon1" (keyup.enter)= "sendReview(review.value, log.$key, item.$key)" #review>
+					<span class="input-group-btn">
+						<button (click)= "sendReview(review.value, log.$key, item.$key)" class="btn btn-default">Enviar</button>
+					</span>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-		  <div class="col-md-10">
-		    <textarea [(ngModel)]="review[item.order]" type="text" class="form-control" id="review" placeholder="Devolucion"></textarea>
-		  </div>
-		  <div class="col-md-2">
-		  	<button class="btn btn-default" (click)= " sendReview(item.order, log.$key, item.$key) ">Enviar</button>
-		  </div>
-		</div>
+				
 		<div class="row" *ngIf="item.reviews">
 			<div class="col-md-12" *ngFor="let review of item.reviews | objectIterate:true ">
 				{{ review.name }} {{ review.timestamp | momentFromNow}}<br>

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule, DropdownModule } from 'ng2-bootstrap';
 
 import { ShowAuthedDirective } from './directives/show-authed.directive';
+import { InputValueDirective } from './directives/input-value.directive';
 import { ObjectIteratePipe } from './pipes/object-iterate.pipe';
 import { MomentDatePipe } from './pipes/moment-date.pipe';
 import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
@@ -21,6 +22,7 @@ import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
   ],
   declarations: [
     ShowAuthedDirective,
+    InputValueDirective,
     ObjectIteratePipe,
     MomentDatePipe,
     MomentFromNowPipe
@@ -30,6 +32,7 @@ import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
     FormsModule,
     RouterModule,
     ShowAuthedDirective,
+    InputValueDirective,
     ReactiveFormsModule,
     AlertModule,
     DropdownModule,
