@@ -39,9 +39,9 @@
 			</div>
 		</div>
 				
-		<div class="row" *ngIf="item.reviews">
+		<div class="row reviews" *ngIf="item.reviews">
 			<div class="col-md-12" *ngFor="let review of item.reviews | objectIterate:true ">
-				{{ review.name }} {{ review.timestamp | momentFromNow}}<br>
+				<strong>{{ review.name }}</strong> <small>{{ review.timestamp | momentFromNow}}</small><br>
 				<p>{{ review.message }}</p>
 			</div>
 		</div>
