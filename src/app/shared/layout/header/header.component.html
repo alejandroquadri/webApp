@@ -3,9 +3,8 @@
     <a class="navbar-brand" routerLink="/">DietApp</a>
 
     <!-- Show this for logged out users -->
-    <ul *appShowAuthed="false" class="nav navbar-nav navbar-right">
-    <!-- <ul class="nav navbar-nav pull-xs-right"> -->
-
+    <!-- <ul *appShowAuthed="false" class="nav navbar-nav navbar-right"> -->
+    <ul *ngIf="!isLogged" class="nav navbar-nav navbar-right">
       <li class="nav-item">
         <a class="nav-link"
           routerLink="/">
@@ -32,8 +31,8 @@
     </ul>
 
     <!-- Show this for logged in users -->
-    <ul *appShowAuthed="true" class="nav navbar-nav navbar-right">
-
+    <!-- <ul *appShowAuthed="true" class="nav navbar-nav navbar-right"> -->
+    <ul *ngIf="isLogged" class="nav navbar-nav navbar-right">
       <li class="nav-item">
         <a class="nav-link"
           routerLink="/"

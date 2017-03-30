@@ -26,6 +26,7 @@ export class ShowAuthedDirective implements OnInit {
     this.authService.isAuthenticated.subscribe(
       (isAuthenticated) => {
         if (isAuthenticated && this.condition || !isAuthenticated && !this.condition) {
+          console.log('show auth', isAuthenticated, this.condition);
           this.viewContainer.createEmbeddedView(this.templateRef);
         } else {
           this.viewContainer.clear();
