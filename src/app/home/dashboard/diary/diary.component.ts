@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as moment from 'moment';
 
@@ -35,16 +35,18 @@ export class DiaryComponent implements OnInit {
   }
 
   sendReview(review, date, key) {
-    const form = {
-      name: this.coachProfile.displayName,
-      timestamp: moment().format(),
-      message: review
-    };
-    this.diaryService.reviewMeal(this.patientUid, date, key, form)
-    .then( ret => {
-      this.review.nativeElement.value = '';
-      console.log('review guardado');
-    });
+    if (review !== '') {
+      const form = {
+        name: this.coachProfile.displayName,
+        timestamp: moment().format(),
+        message: review
+      };
+      this.diaryService.reviewMeal(this.patientUid, date, key, form)
+      .then( ret => {
+        this.review.nativeElement.value = '';
+        console.log('review guardado');
+      });
+    } else  { console.log('no manda, vacio'); }
   }
 
   rate(rate: string, date: string, key: string) {

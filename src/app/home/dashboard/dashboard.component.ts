@@ -4,7 +4,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   moduleId: module.id,
   selector: 'app-dasboard',
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
 

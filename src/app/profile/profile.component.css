@@ -1,0 +1,16 @@
+.avatar {
+	margin: 2vh 0 2vh 0;
+}
+
+.avatarImg {
+    border-radius: 60px; /* must be width + border */
+    display: block;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+}
+
+.uploadText {
+  text-align: center;
+}

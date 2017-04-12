@@ -1,3 +1,26 @@
-<p>
-  chat works!
-</p>
+<div class="chatPage">
+
+  <div class="messages" #chatUi>
+    <div *ngFor="let msg of chat | async" class="chatBubble">
+        <img class="profile-pic {{ msg.displayName === profileObject.displayName? 'left':'right' }}" 
+        [src]="msg.displayName === profileObject.displayName? profileObject.avatar: patientProfile.url">
+        <div class="chat-bubble {{ msg.displayName === profileObject.displayName? 'left':'right' }}">
+          <div class="message">{{ msg.content }}</div>
+          <div class="message-detail">
+              <span style="font-weight:bold;">{{ msg.displayName }} </span>,
+              <span>{{ msg.timestamp | momentFromNow }}</span>
+          </div>
+        </div>
+    </div>
+  </div>
+
+	<div class="row chatPageFooter">
+		<div class="input-group">
+			<input class="form-control" type="text" aria-describedby="basic-addon1" (keyup.enter)= "send()" #chatMessage>
+			<span class="input-group-btn">
+				<button (click)= "send()" class="btn btn-default">Enviar</button>
+			</span>
+		</div>
+	</div>
+
+</div>

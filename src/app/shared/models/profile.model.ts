@@ -5,5 +5,5 @@ export class Profile {
   public bio: string;
   public displayName: string;
   public birthDate: string;
-  public localPath: string;
+  // public localPath: string;
 }

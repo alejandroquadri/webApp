@@ -4,7 +4,13 @@
 
 		<div class="col-md-6 col-md-offset-3 col-xs-12">
 			
-			<h1>Perfil</h1>
+		<h1>Perfil</h1>
+
+		<div class="avatar">
+	    <input class="avatarImg" type="image" [src]="profileObject?.avatar || avatar" (click)="file.click()">
+	    <input type="file"  id="localPath" style="display: none;" #file (change)="uploadImage()">
+	    <h4 class="uploadText" *ngIf="!profileObject?.avatar"><small>click para subir foto!</small></h4>
+	  </div>
 
 		<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 			
@@ -37,12 +43,6 @@
 				<label for="bio">Bio</label>
 				<textarea type="text" formControlName="bio" id="bio" rows="8" class="form-control">
 				</textarea>
-			</div>
-
-			<div class="form-group">
-				<label for="localPath">Image</label>
-				<input type="file" formControlName="localPath" id="localPath">
-		    <p class="help-block">Agrega tu foto de perfil!</p>
 			</div>
 
 			<button type="submit" class="btn btn-success pull-right btn-sm">

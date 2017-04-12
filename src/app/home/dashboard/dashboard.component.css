@@ -1,0 +1,9 @@
+.diary {
+	height: 85vh;
+  overflow: auto;
+}
+
+.chat {
+	height: 85vh;
+  overflow: auto;
+}

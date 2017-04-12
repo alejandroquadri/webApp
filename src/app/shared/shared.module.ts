@@ -7,6 +7,7 @@ import { AlertModule, DropdownModule } from 'ng2-bootstrap';
 
 import { ShowAuthedDirective } from './directives/show-authed.directive';
 import { InputValueDirective } from './directives/input-value.directive';
+import { ElasticTextarea } from './components/elastic-text-area.component';
 import { ObjectIteratePipe } from './pipes/object-iterate.pipe';
 import { MomentDatePipe } from './pipes/moment-date.pipe';
 import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
@@ -25,7 +26,8 @@ import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
     InputValueDirective,
     ObjectIteratePipe,
     MomentDatePipe,
-    MomentFromNowPipe
+    MomentFromNowPipe,
+    ElasticTextarea
   ],
   exports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
     DropdownModule,
     ObjectIteratePipe,
     MomentDatePipe,
-    MomentFromNowPipe
+    MomentFromNowPipe,
+    ElasticTextarea
   ]
 })
 export class SharedModule {
