@@ -1,1 +1,16 @@
-<p>Patient Profile</p>
+	
+	<div class="pProfile">
+		<div class="row">
+			<div class="col-md-3">
+				<img class="avatarImg" type="image" [src]="patientProfile?.url || avatar">
+			</div>
+			<div class="col-md-9">
+				<p>{{ patientProfile?.firstName }} {{ patientProfile?.lastName }}</p>
+				<p> {{ age }} años</p>
+			</div>
+		</div>
+		<div class="row bio">
+			<h4>Bio</h4>
+			<p>{{ patientProfile?.bio }}</p>
+		</div>
+	</div>
