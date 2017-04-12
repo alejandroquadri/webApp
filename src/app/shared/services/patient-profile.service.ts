@@ -18,8 +18,9 @@ export class PatientProfileService {
     return this.af.database.object(`/userProfile/${uid}`);
   }
 
+  // este es para obtener el perfil una vez.
+  // lo hice para probar un poco firebase SDK
   getProfile(uid): firebase.Promise<any> {
-    console.log(uid);
     return firebase.database().ref(`/userProfile/${uid}`).once('value');
   }
 }

@@ -1,4 +1,4 @@
-<div *ngFor="let log of diary | async | objectIterate:true">
+<div class="row diary" *ngFor="let log of diary | async | objectIterate:true">
 	
 	<div class="row">
 		<h3>{{ log.$key | momentDate:'dddd DD MMMM YYYY'}}</h3>

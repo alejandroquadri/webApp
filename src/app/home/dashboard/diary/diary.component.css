@@ -1,6 +1,15 @@
+.diary {
+	height: 80vh;
+	margin-bottom: 2vh;
+  margin-top: 2vh;
+  overflow-y: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .reviewIcon {
-	font-size: 20px;
 	cursor: pointer;
+	font-size: 20px;
 }
 
 .OKselected {
