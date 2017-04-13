@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class ChatService {
 
+  chat: any;
+
   constructor(
     public af: AngularFire,
-  ) {
-    console.log('Hello ChatService Provider');
-  }
+  ) {}
 
   getChat(chatUid: string): FirebaseListObservable<any[]> {
     return this.af.database.list(`/chats/${chatUid}`);
@@ -27,6 +28,25 @@ export class ChatService {
   removeMsg(chatUid: string, msg: any): firebase.Promise<void> {
     return this.af.database.list(`/chats/${chatUid}`)
     .remove(msg);
+  }
+
+  getChatFire (chatUid: string) {
+    console.log(chatUid);
+    return firebase.database().ref(`/chats/${chatUid}`).once('value');
+  }
+
+  mesRead (chatUid: string, author: string) {
+    if (this.chat) {this.chat.off(); }
+    this.chat = firebase.database().ref(`/chats/${chatUid}`);
+    this.chat.on('child_added', (data) => {
+      if (author !== data.val().uid) {
+        this.chat.child(data.key).update({read: true})
+        .then(() => console.log('updated'),
+          err => console.log('error')
+        );
+      }
+    });
+
   }
 
 }

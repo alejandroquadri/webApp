@@ -2,12 +2,12 @@
 
   <div class="messages" #chatUi>
     <div *ngFor="let msg of chat | async" class="chatBubble">
-        <img class="profile-pic {{ msg.displayName === profileObject.displayName? 'left':'right' }}" 
-        [src]="msg.displayName === profileObject.displayName? profileObject.avatar: patientProfile.url">
-        <div class="chat-bubble {{ msg.displayName === profileObject.displayName? 'left':'right' }}">
+        <img class="profile-pic {{ msg.uid === profileObject.$key? 'left':'right' }}" 
+        [src]="msg.uid === profileObject.$key? profileObject.avatar: patientProfile.url">
+        <div class="chat-bubble {{ msg.uid === profileObject.$key? 'left':'right' }}">
           <div class="message">{{ msg.content }}</div>
           <div class="message-detail">
-              <span style="font-weight:bold;">{{ msg.displayName }} </span>,
+              <span style="font-weight:bold;">{{ msg.uid === profileObject.$key? profileObject.displayName: patientProfile.displayName }}</span>,
               <span>{{ msg.timestamp | momentFromNow }}</span>
           </div>
         </div>

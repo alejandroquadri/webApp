@@ -39,6 +39,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         });
         this.chatUid = `${prof.$key}&${this.patientUid}`;
         this.chat = this.chatService.getChat(this.chatUid);
+        this.chatService.mesRead(this.chatUid, prof.$key);
       });
     });
 }
@@ -54,7 +55,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     if (this.message.nativeElement.value !== '') {
       const form = {
         content: this.message.nativeElement.value,
+        uid: this.profileObject.$key,
         displayName: this.profileObject.displayName,
+        read: false,
         timestamp: moment().format(),
       };
       console.log(form);
