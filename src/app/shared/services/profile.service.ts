@@ -31,6 +31,8 @@ export class ProfileService {
     return this.fireProfile.update(form);
   }
 
-
+  getProfile() {
+    return firebase.database().ref(`/coachProfile/${this.uid}`).once('value');
+  }
 }
 

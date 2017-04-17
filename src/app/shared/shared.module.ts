@@ -11,6 +11,7 @@ import { ElasticTextarea } from './components/elastic-text-area.component';
 import { ObjectIteratePipe } from './pipes/object-iterate.pipe';
 import { MomentDatePipe } from './pipes/moment-date.pipe';
 import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
     ObjectIteratePipe,
     MomentDatePipe,
     MomentFromNowPipe,
+    FilterPipe,
     ElasticTextarea
   ],
   exports: [
@@ -41,6 +43,7 @@ import { MomentFromNowPipe } from './pipes/moment-from-now.pipe';
     ObjectIteratePipe,
     MomentDatePipe,
     MomentFromNowPipe,
+    FilterPipe,
     ElasticTextarea
   ]
 })
@@ -48,7 +51,7 @@ export class SharedModule {
   static forRoot() {
       return {
           ngModule: SharedModule,
-          providers: [],
+          providers: [ObjectIteratePipe],
       };
    }
 }

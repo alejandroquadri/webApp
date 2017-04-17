@@ -46,7 +46,12 @@ export class ChatService {
         );
       }
     });
+  }
 
+  getChatFireSDK(chatUid: string) {
+    console.log(chatUid);
+    firebase.database().ref(`/chats/${chatUid}`)
+    .on('value', data => console.log(data.val()));
   }
 
 }

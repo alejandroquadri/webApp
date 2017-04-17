@@ -1,54 +1,80 @@
-<div class="row diary" *ngFor="let log of diary | async | objectIterate:true">
-	
-	<div class="row">
-		<h3>{{ log.$key | momentDate:'dddd DD MMMM YYYY'}}</h3>
-	</div>
-		
-	
-	<div *ngFor="let item of log | objectIterate: true">
-		
-		<div class="row"><h4>{{ item.meal }}</h4></div>
-		
-		<div class="row"><p>{{ item.text }}</p></div>
+<div class="row filters">
+		<div class="form-group">
+			<div class="col-md-3 text-center">
+				<div class="checkbox">
+			    <label>
+			      <input [(ngModel)]="check" type="checkbox" (click)="checkClick()"> mostrar chequeados
+			    </label>						
+			  </div>
+			</div>
+		<!-- 	<div class="col-md-9">
+		    <input [(ngModel)]="search" type="text" class="form-control"  placeholder="Escribe para buscar...">
+			</div>		 -->	
+	  </div>
+</div>
 
-		<div class="row" *ngIf="item.webImages">
-		  <div class="col-xs-6 col-md-3" *ngFor="let img of item.webImages">
-		    <a class="thumbnail">
-		      <img [src]="img">
-		    </a>
-		  </div>
+<div class="row diary">
+	
+	<div *ngFor="let log of diary | async | objectIterate:true:'$key':false">
+		
+		<div *ngFor="let item of (log | objectIterate: true | filter: 'state': state); let i = index">
+		<div class="row" *ngIf="i === 0">
+			<h3>{{ log.$key | momentDate:'dddd DD MMMM YYYY'}}</h3>
 		</div>
-		
-		<div class="row">
-			<div class="col-md-12">
-				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon1">
-						<i class="fa fa-check-circle reviewIcon" aria-hidden="true"
-						(click)= "rate('ok', log.$key, item.$key)"
-						[ngClass] = "{ 'OKselected': (item.rate === 'ok'? true : false) }" ></i>
+			<div class="row">
+				<h4 class="mealTitle">{{ item.meal }}</h4>
+			  <button type="button" class="btn btn-xs"
+			  [ngClass] = "{ 'btn-success' : (item.state === 'ok'? true: false),
+			  	 'btn-danger' : !(item.state === 'ok'? true: false) }"
+			  	 (click)="changeState(item.state, log.$key, item.$key)"
+			  >{{ item.state === 'ok'? 'Chequeado': 'Pendiente' }}</button>
+			</div>
+			
+			<div class="row">
+				<p>{{ item.text }}</p>
+			</div>
 
-						<i class="fa fa-times-circle reviewIcon" aria-hidden="true"
-						(click)= "rate('notok', log.$key, item.$key)"
-						[ngClass] = "{ 'notOKselected': (item.rate === 'notok'? true : false) }"></i>
-					</span>
-					<input class="form-control" type="text" placeholder="Devolucion" aria-describedby="basic-addon1" (keyup.enter)= "sendReview(review.value, log.$key, item.$key)" #review>
-					<span class="input-group-btn">
-						<button (click)= "sendReview(review.value, log.$key, item.$key)" class="btn btn-default">Enviar</button>
-					</span>
+			<div class="row" *ngIf="item.webImages">
+			  <div class="col-xs-6 col-md-3" *ngFor="let img of item.webImages">
+			    <a class="thumbnail">
+			      <img [src]="img">
+			    </a>
+			  </div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1">
+							<i class="fa fa-check-circle reviewIcon" aria-hidden="true"
+							(click)= "rate('ok', log.$key, item.$key)"
+							[ngClass] = "{ 'OKselected': (item.rate === 'ok'? true : false) }" ></i>
+
+							<i class="fa fa-times-circle reviewIcon" aria-hidden="true"
+							(click)= "rate('notok', log.$key, item.$key)"
+							[ngClass] = "{ 'notOKselected': (item.rate === 'notok'? true : false) }"></i>
+						</span>
+						<input class="form-control" type="text" placeholder="Devolucion" aria-describedby="basic-addon1" (keyup.enter)= "sendReview(review.value, log.$key, item.$key)" #review>
+						<span class="input-group-btn">
+							<button (click)= "sendReview(review.value, log.$key, item.$key)" class="btn btn-default">Enviar</button>
+						</span>
+					</div>
 				</div>
 			</div>
-		</div>
-				
-		<div class="row reviews" *ngIf="item.reviews">
-			<div class="col-md-12" *ngFor="let review of item.reviews | objectIterate:true ">
-				<strong>{{ review.name }}</strong> <small>{{ review.timestamp | momentFromNow}}</small><br>
-				<p>{{ review.message }}</p>
+					
+			<div class="row reviews" *ngIf="item.reviews">
+				<div class="col-md-12" *ngFor="let review of item.reviews | objectIterate:true ">
+					<strong>{{ review.name }}</strong> <small>{{ review.timestamp | momentFromNow}}</small><br>
+					<p>{{ review.message }}</p>
+				</div>
 			</div>
-		</div>
-		<hr/>
+			<hr/>
 
+		</div>
 	</div>
+
 </div>
+
 
 
 

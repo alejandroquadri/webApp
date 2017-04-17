@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as moment from 'moment';
 
-import { ProfileService, DiaryService } from '../../../shared';
+import { ProfileService, DiaryService, ObjectIteratePipe } from '../../../shared';
 
 @Component({
   selector: 'app-diary',
@@ -15,12 +15,16 @@ export class DiaryComponent implements OnInit {
   coachProfile: any;
   diary: any;
   @ViewChild('review') review;
+  search: string;
+  check: false;
+  state = 'pending';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private diaryService: DiaryService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private objectIteratePipe: ObjectIteratePipe
   ) {
     this.profileService.fireProfile.subscribe( profile => {
       this.coachProfile = profile;
@@ -53,8 +57,23 @@ export class DiaryComponent implements OnInit {
     const form = {
       rate: rate
     };
-    this.diaryService.rateMeal(this.patientUid, date, key, form)
-    .then( ret => console.log('meal has been rated', ret));
+    this.diaryService.updateEntry(this.patientUid, date, key, form)
+    .then( () => console.log('meal has been rated'));
+  }
+
+  checkClick() {
+    this.check ? this.state = 'pending' : this.state = '';
+  }
+
+  changeState(state: string, date, key) {
+    console.log('cambio', state);
+    state === 'pending' ? state = 'ok' : state = 'pending';
+    console.log('cambio', state);
+    const form = {
+      state: state
+    };
+    this.diaryService.updateEntry(this.patientUid, date, key, form)
+    .then( () => console.log('meal has been rated'));
   }
 
 }

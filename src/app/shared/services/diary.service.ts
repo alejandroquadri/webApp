@@ -18,7 +18,7 @@ export class DiaryService {
     .push(message);
   }
 
-  rateMeal(uid, date, key, form) {
+  updateEntry(uid, date, key, form) {
     return this.af.database.list(`/diary/${uid}/${date}`)
     .update(key, form);
   }
