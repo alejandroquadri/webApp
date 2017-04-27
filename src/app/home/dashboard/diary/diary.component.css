@@ -1,14 +1,11 @@
-.diary {
-	height: 80vh;
-	margin-bottom: 2vh;
-  overflow-y: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+/*
+.entries {
+	background-color: #FF00FF
 }
 
 .filters {
-	margin-top: 10px;
-}
+	background-color: green;
+}*/
 
 .mealTitle {
 	display: inline-block;

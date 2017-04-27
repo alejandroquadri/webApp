@@ -1,20 +1,17 @@
-.chatPage {
-  position: relative;
-}
 
 .messages {
-  height: 80vh;
+  height: 93%;
   overflow: auto;
   position: relative;
 }
 
 .chatPageFooter {
-  margin-top: 1vh;
+  height: 7%;
 }
 
 .chatBubble {
   /*margin-bottom: 5px;*/
-  overflow: overlay;
+  overflow: auto;
   position: relative;
 }
 

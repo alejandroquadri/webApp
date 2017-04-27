@@ -1,27 +1,29 @@
-<!-- <div class="container-fluid"> -->
-	
-	<div class="col-md-9 diary">
-
-		<div class="row">
-			<div class="btn-group" role="group" aria-label="...">
-			  <button type="button" class="btn btn-default" (click)="nav('diary')">Diario</button>
-			  <button type="button" class="btn btn-default" (click)="nav('logs')">Peso</button>
-			  <button type="button" class="btn btn-default" (click)="nav('patient-profile')">Perfil</button>
-			</div>
-		</div>
-
-		<div class="row">
-			<router-outlet></router-outlet>
-		</div>
+<!-- <div class="container-fluid dashboard"> -->
+<div class="dashboard">
+	<!-- <div class="row"> -->
 		
+		<div class="col-md-9 diary">
 
-	</div>
+				<div class="col-md-12 buttons">
+					<div class="btn-group" role="group" aria-label="...">
+					  <button type="button" class="btn btn-default" (click)="nav('diary')">Diario</button>
+					  <button type="button" class="btn btn-default" (click)="nav('logs')">Peso</button>
+					  <button type="button" class="btn btn-default" (click)="nav('patient-profile')">Perfil</button>
+					</div>
+				</div>
+				
+				<div class="col-md-12 items">
+					<router-outlet></router-outlet>
+				</div>
 
-	<div class="col-md-3 chat">
-		<app-chat></app-chat>
-	</div>
+		</div>
 
-<!-- </div> -->
+		<div class="col-md-3 chat">
+			<app-chat></app-chat>
+		</div>
+
+	<!-- </div> -->
+</div>
 
 
 

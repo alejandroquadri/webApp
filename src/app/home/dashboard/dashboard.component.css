@@ -1,9 +1,21 @@
-/*.rOutlet {
-	height: 85vh;
-  overflow: auto;
-}*/
+
+.dashboard {
+	height: 100%;
+}
+
+.diary {
+	height: 100%;
+}
 
 .chat {
-	height: 85vh;
+	height: 100%;
+}
+
+.items {
+	height: 94%;
   overflow: auto;
+}
+
+.buttons {
+	height: 6%;
 }

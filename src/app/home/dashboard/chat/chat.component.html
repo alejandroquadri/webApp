@@ -1,26 +1,26 @@
-<div class="chatPage">
+  <!-- <div class="chatPage"> -->
 
-  <div class="messages" #chatUi>
-    <div *ngFor="let msg of chat | async" class="chatBubble">
-        <img class="profile-pic {{ msg.uid === profileObject.$key? 'left':'right' }}" 
-        [src]="msg.uid === profileObject.$key? profileObject.avatar: patientProfile.url">
-        <div class="chat-bubble {{ msg.uid === profileObject.$key? 'left':'right' }}">
-          <div class="message">{{ msg.content }}</div>
-          <div class="message-detail">
-              <span style="font-weight:bold;">{{ msg.uid === profileObject.$key? profileObject.displayName: patientProfile.displayName }}</span>,
-              <span>{{ msg.timestamp | momentFromNow }}</span>
+    <div class="messages" #chatUi>
+      <div *ngFor="let msg of chat | async" class="chatBubble">
+          <img class="profile-pic {{ msg.uid === profileObject.$key? 'left':'right' }}" 
+          [src]="msg.uid === profileObject.$key? profileObject.avatar: patientProfile.url">
+          <div class="chat-bubble {{ msg.uid === profileObject.$key? 'left':'right' }}">
+            <div class="message">{{ msg.content }}</div>
+            <div class="message-detail">
+                <span style="font-weight:bold;">{{ msg.uid === profileObject.$key? profileObject.displayName: patientProfile.displayName }}</span>,
+                <span>{{ msg.timestamp | momentFromNow }}</span>
+            </div>
           </div>
-        </div>
+      </div>
     </div>
-  </div>
 
-	<div class="row chatPageFooter">
-		<div class="input-group">
-			<input class="form-control" type="text" aria-describedby="basic-addon1" (keyup.enter)= "send()" #chatMessage>
-			<span class="input-group-btn">
-				<button (click)= "send()" class="btn btn-default">Enviar</button>
-			</span>
-		</div>
-	</div>
+    <div class="chatPageFooter">
+      <div class="input-group">
+        <input class="form-control" type="text" aria-describedby="basic-addon1" (keyup.enter)= "send()" #chatMessage>
+        <span class="input-group-btn">
+          <button (click)= "send()" class="btn btn-default">Enviar</button>
+        </span>
+      </div>
+    </div>
 
-</div>
+  <!-- </div> -->

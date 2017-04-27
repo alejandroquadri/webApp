@@ -1,0 +1,4 @@
+.patientList {
+	height: 100%;
+  overflow-y: auto;
+}
