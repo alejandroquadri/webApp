@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log('upload image', this.file);
-   this.profileService.fireProfile
+   this.profileService.getProfile()
     .subscribe(prof => {
       console.log('profile component pide el fireProfile', prof);
       this.profileForm.patchValue(prof);

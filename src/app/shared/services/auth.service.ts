@@ -11,7 +11,7 @@ export class AuthService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  public uid = '';
+  public current: any;
 
   constructor(
     public af: AngularFire,
@@ -28,9 +28,11 @@ export class AuthService {
     this.af.auth.subscribe( user => {
       if (user) {
         console.log('usaurio en auth service isLogged', user);
+        this.current = user;
         this.isAuthenticatedSubject.next(true);
       } else {
         console.log('no hay usuario');
+        this.current = null;
         this.isAuthenticatedSubject.next(false);
       }
     },

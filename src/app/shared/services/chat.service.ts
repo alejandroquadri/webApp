@@ -31,7 +31,6 @@ export class ChatService {
   }
 
   getChatFire (chatUid: string) {
-    console.log(chatUid);
     return firebase.database().ref(`/chats/${chatUid}`).once('value');
   }
 
@@ -49,7 +48,6 @@ export class ChatService {
   }
 
   getChatFireSDK(chatUid: string) {
-    console.log(chatUid);
     firebase.database().ref(`/chats/${chatUid}`)
     .on('value', data => console.log(data.val()));
   }

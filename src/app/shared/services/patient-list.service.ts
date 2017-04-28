@@ -7,9 +7,6 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class PatientListService {
 
-  uid: string;
-  patientList: FirebaseListObservable<any>;
-
   constructor(
     public af: AngularFire,
     public authService: AuthService
@@ -18,10 +15,6 @@ export class PatientListService {
   }
 
   getPatientList() {
-    this.authService.getUser()
-    .subscribe(user => {
-      this.uid = user.uid;
-      this.patientList = this.af.database.list(`/coachUser/${this.uid}`);
-    });
+    return this.af.database.list(`/coachUser/${this.authService.current.uid}`);
   }
 }

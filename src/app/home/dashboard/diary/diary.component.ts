@@ -26,7 +26,7 @@ export class DiaryComponent implements OnInit {
     private profileService: ProfileService,
     private objectIteratePipe: ObjectIteratePipe
   ) {
-    this.profileService.fireProfile.subscribe( profile => {
+    this.profileService.getProfile().subscribe( profile => {
       this.coachProfile = profile;
     });
   }

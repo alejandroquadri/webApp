@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     public chatService: ChatService,
     public patientProfileService: PatientProfileService
 ) {
-    this.profileService.fireProfile
+    this.profileService.getProfile()
     .subscribe(prof => {
       this.profileObject = prof;
       this.route.params.forEach((params: Params) => {
@@ -40,7 +40,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         this.chatUid = `${prof.$key}&${this.patientUid}`;
         this.chat = this.chatService.getChat(this.chatUid);
         this.chatService.mesRead(this.chatUid, prof.$key);
-        this.chatService.getChatFireSDK(this.chatUid);
       });
     });
 }

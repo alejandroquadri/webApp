@@ -9,30 +9,33 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ProfileService {
 
-  uid: string;
-  fireProfile: FirebaseObjectObservable<any>;
+  current: any;
 
   constructor(
     public af: AngularFire,
     public authService: AuthService
   ) {
-    this.setProfile();
-  }
-
-  setProfile() {
-    this.authService.getUser()
-    .subscribe(user => {
-      this.uid = user.uid;
-      this.fireProfile = this.af.database.object(`/coachProfile/${this.uid}`);
+    this.authService.getUser().subscribe(user => {
+      if (user) {
+        this.af.database.object(`/coachProfile/${this.authService.current.uid}`)
+        .subscribe(prof => {
+          this.current = prof;
+        });
+      }
     });
   }
 
-  update(form): firebase.Promise<void> {
-    return this.fireProfile.update(form);
+  getProfile(): FirebaseObjectObservable<any> {
+    return this.af.database.object(`/coachProfile/${this.authService.current.uid}`);
   }
 
-  getProfile() {
-    return firebase.database().ref(`/coachProfile/${this.uid}`).once('value');
+  update(form): firebase.Promise<void> {
+    return this.af.database.object(`/coachProfile/${this.authService.current.uid}`)
+    .update(form);
+  }
+
+  getProfileOnce(): firebase.Promise<any> {
+    return firebase.database().ref(`/coachProfile/${this.authService.current.uid}`).once('value');
   }
 }
 
