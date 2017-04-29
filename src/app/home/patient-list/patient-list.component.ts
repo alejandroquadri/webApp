@@ -24,7 +24,7 @@ export class PatientListComponent implements OnInit {
     const list = this.patients
     .take(1)
     .subscribe( pList => {
-      this.router.navigate(['/dashboard', pList[0].uid, 'diary', {displayName: pList[0].displayName}]);
+      this.router.navigate(['/dashboard', pList[0].$key, 'diary', {displayName: pList[0].displayName}]);
     });
   }
 

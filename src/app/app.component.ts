@@ -11,6 +11,8 @@ import { AuthService, ProfileService } from './shared';
 })
 export class AppComponent implements OnInit {
 
+  logged: boolean;
+
   constructor (
     private authService: AuthService,
     private profileService: ProfileService,
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
   ) {
     this.authService.getUser().subscribe( user => {
       if (user) {
+        this.logged = true;
         this.profileService.getProfile()
         .subscribe( prof => {
           if (prof) {
@@ -26,6 +29,7 @@ export class AppComponent implements OnInit {
           }
         });
       } else {
+        this.logged = false;
         this.router.navigate(['/login']);
       }
     });

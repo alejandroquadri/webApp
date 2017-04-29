@@ -4,10 +4,19 @@ html, body {
 
 .header {
 	height: 7vh;
+  min-height: 50px;
 }
 
 .main {
 	height: 93vh;
+}
+
+.mainUnlogged {
+	height: 88vh;
+}
+
+.footerUnlogged {
+	height: 5vh;
 }
 
 .container-fluid {

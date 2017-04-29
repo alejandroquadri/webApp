@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule, DropdownModule } from 'ng2-bootstrap';
+import { Chart } from 'chart.js';
 
 import { ShowAuthedDirective } from './directives/show-authed.directive';
 import { InputValueDirective } from './directives/input-value.directive';

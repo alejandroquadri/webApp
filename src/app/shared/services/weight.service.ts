@@ -5,16 +5,16 @@ import * as firebase from 'firebase';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class PatientListService {
+export class WeightService {
 
   constructor(
     public af: AngularFire,
     public authService: AuthService
   ) {
-    this.getPatientList();
   }
 
-  getPatientList() {
-    return this.af.database.list(`/coachPatients/${this.authService.current.uid}`);
+  getWeightLogs(uid) {
+    return this.af.database.list(`/weightLogs/${uid}`);
   }
+
 }

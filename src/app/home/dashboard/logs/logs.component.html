@@ -1,1 +1,9 @@
-<p>logs</p>
+<p> Peso actual {{ actual }} </p>
+<p> Peso desafio {{ patientProfile?.challengeWeight }} </p>
+<p> Peso Obejtivo {{ patientProfile?.objectiveWeight }}  </p>
+<p> Peso Inicial {{ patientProfile?.initialWeight }} </p>
+<p> Peso perdido {{ patientProfile?.initialWeight - actual }} </p>
+
+<div class="chart">
+	<canvas #lineCanvas></canvas>
+</div>

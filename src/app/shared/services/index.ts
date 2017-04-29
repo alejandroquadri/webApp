@@ -7,3 +7,4 @@ export * from './diary.service';
 export * from './chat.service';
 export * from './upload-files.service';
 export * from './patient-profile.service';
+export * from './weight.service';

@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
-      console.log(params);
       const id = params['id']; // el + sirve en javascript para convertir un string en numero
       this.patient = id;
     });
