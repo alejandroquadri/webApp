@@ -21,6 +21,7 @@ import {
   UploadFilesService,
   PatientProfileService,
   WeightService,
+  ActivityService,
   HeaderComponent,
   FooterComponent,
 } from './shared';
@@ -70,7 +71,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     UploadFilesService,
     ChatService,
     PatientProfileService,
-    WeightService
+    WeightService,
+    ActivityService
   ],
   bootstrap: [AppComponent]
 })

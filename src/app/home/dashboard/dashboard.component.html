@@ -4,9 +4,16 @@
 
 				<div class="col-md-12 buttons">
 					<div class="btn-group" role="group" aria-label="...">
-					  <button type="button" class="btn btn-default" (click)="nav('diary')">Diario</button>
+					  <!-- <button type="button" class="btn btn-default" (click)="nav('diary')">Diario</button>
 					  <button type="button" class="btn btn-default" (click)="nav('logs')">Peso</button>
-					  <button type="button" class="btn btn-default" (click)="nav('patient-profile')">Perfil</button>
+					  <button type="button" class="btn btn-default" (click)="nav('patient-profile')">Perfil</button> -->
+					  <button type="button" class="btn btn-default" [routerLink] = "['/dashboard', patient, 'diary']"
+					  routerLinkActive = "active">
+					  Diario</button>
+					  <button type="button" class="btn btn-default" [routerLink] = "['/dashboard', patient, 'logs']"
+					  routerLinkActive = "active">Peso</button>
+					  <button type="button" class="btn btn-default" [routerLink] = "['/dashboard', patient, 'patient-profile']"
+					  routerLinkActive = "active">Perfil</button>
 					</div>
 				</div>
 				

@@ -1,8 +1,11 @@
-<p> Peso actual {{ actual }} </p>
-<p> Peso desafio {{ patientProfile?.challengeWeight }} </p>
-<p> Peso Obejtivo {{ patientProfile?.objectiveWeight }}  </p>
-<p> Peso Inicial {{ patientProfile?.initialWeight }} </p>
-<p> Peso perdido {{ patientProfile?.initialWeight - actual }} </p>
+
+<div class="row weights">
+	<div class="col-md-2 col-md-offset-1 text-center"><h4><small>actual</small> {{ actual }}</h4></div>
+	<div class="col-md-2 text-center"><h4><small>desafio</small> {{ patientProfile?.challengeWeight }}</h4></div>
+	<div class="col-md-2 text-center"><h4><small>obejtivo</small> {{ patientProfile?.objectiveWeight }}</h4></div>
+	<div class="col-md-2 text-center"><h4><small>inicial</small> {{ patientProfile?.initialWeight }}</h4></div>
+	<div class="col-md-2 text-center"><h4><small>perdido</small> {{ patientProfile?.initialWeight - actual }}</h4></div>
+</div>
 
 <div class="chart">
 	<canvas #lineCanvas></canvas>

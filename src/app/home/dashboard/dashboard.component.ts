@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // esta funcion no sirve mas, pase la funcionalidad al template, al igual que en el ashboard
+  // la dejo para recordar como se hacia
   nav(dir) {
     this.router.navigate(['/dashboard', this.patient, dir]);
   }

@@ -25,6 +25,7 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
         path: 'dashboard/:id',
         component: DashboardComponent,
         children: [
+          { path: '', redirectTo: 'diary', pathMatch: 'full' },
           {
             path: 'diary',
             component: DiaryComponent,

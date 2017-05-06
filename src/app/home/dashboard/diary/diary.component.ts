@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as moment from 'moment';
 
-import { ProfileService, DiaryService, ObjectIteratePipe } from '../../../shared';
+import { ProfileService, DiaryService, ObjectIteratePipe, ActivityService } from '../../../shared';
 
 @Component({
   selector: 'app-diary',
@@ -23,6 +23,7 @@ export class DiaryComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private diaryService: DiaryService,
+    private activityService: ActivityService,
     private profileService: ProfileService,
     private objectIteratePipe: ObjectIteratePipe
   ) {
@@ -66,14 +67,17 @@ export class DiaryComponent implements OnInit {
   }
 
   changeState(state: string, date, key) {
-    console.log('cambio', state);
     state === 'pending' ? state = 'ok' : state = 'pending';
-    console.log('cambio', state);
     const form = {
       state: state
     };
     this.diaryService.updateEntry(this.patientUid, date, key, form)
-    .then( () => console.log('meal has been rated'));
+    .then( () => {
+      let add: boolean;
+      state === 'pending' ? add = true : add = false;
+      this.activityService.updatePendingReviewCount(this.patientUid, add)
+      .then( ret => console.log(ret.snapshot.val()));
+    });
   }
 
 }

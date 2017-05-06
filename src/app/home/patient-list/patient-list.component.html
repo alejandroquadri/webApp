@@ -1,8 +1,11 @@
 <div class="patientList">
 	<div class="list-group">
 		<a class="list-group-item" *ngFor="let patient of patients | async" 
-		(click)="getPatient(patient.$key, patient.displayName)">
+		[routerLink]="['/dashboard', patient.$key]"
+		routerLinkActive = "active">
 			{{ patient.displayName }}
+			<span class="badge">{{ (pendingReviews| async)[patient.$key]?.pendingReviews  }}</span>
+			<span class="badge">2</span>
 		</a>
 	</div>
 </div>

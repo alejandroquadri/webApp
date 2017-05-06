@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 
+import { AuthService } from './auth.service';
+
 @Injectable()
 export class ChatService {
 
@@ -9,6 +11,7 @@ export class ChatService {
 
   constructor(
     public af: AngularFire,
+    public authService: AuthService
   ) {}
 
   getChat(chatUid: string): FirebaseListObservable<any[]> {
