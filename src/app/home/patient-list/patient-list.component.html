@@ -4,9 +4,17 @@
 		[routerLink]="['/dashboard', patient.$key]"
 		routerLinkActive = "active">
 			{{ patient.displayName }}
-			<span class="badge">{{ (pendingReviews| async)[patient.$key]?.pendingReviews  }}</span>
-			<span class="badge">2</span>
+				<span class="badge" 
+				*ngIf="(pendingReviews | async)[patient.$key]?.pendingReviews > 0 ? true : false ">
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					{{ (pendingReviews | async)[patient.$key].pendingReviews }}
+				</span>
+				<span class="badge" 
+				*ngIf="(pendingReviews | async)[patient.$key]?.unreadMsgs > 0 ? true : false ">
+					<i class="fa fa-comment" aria-hidden="true"></i>
+					{{ (pendingReviews | async)[patient.$key].unreadMsgs }}
+				</span>
 		</a>
 	</div>
 </div>
-
+<div style="display: hidden"> {{ (pendingReviews | async) | json}} </div>

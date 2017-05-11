@@ -16,7 +16,7 @@ export class ActivityService {
     public authService: AuthService
   ) {}
 
-  getPendingReviews(): FirebaseObjectObservable<any> {
+  getActivity(): FirebaseObjectObservable<any> {
     return this.af.database.object(`/activity/coaches/${this.authService.current.uid}`);
   }
 
@@ -29,6 +29,41 @@ export class ActivityService {
         if (value > 0) {
           return value - 1;
         } else {
+          return value;
+        }
+      }
+    });
+  }
+
+  updateUnreadPatientMsgs (patientUid: string, add: boolean): firebase.Promise<any> {
+    return firebase.database().ref(`/activity/patients/${patientUid}/unreadMsgs`)
+    .transaction( value => {
+      if (add) {
+        return value + 1;
+      } else {
+        if (value > 0) {
+          return value - 1;
+        } else {
+          return value;
+        }
+      }
+    });
+  }
+
+  updateUnreadCoachMsgs(patientUid: string, add: boolean): firebase.Promise<any> {
+    console.log('entra', this.authService.current.uid, patientUid, add);
+    return firebase.database().ref(`/activity/coaches/${this.authService.current.uid}/${patientUid}/unreadMsgs`)
+    .transaction( value => {
+      console.log('valor es', value);
+      if (add) {
+        console.log('suma');
+        return value + 1;
+      } else {
+        if (value > 0) {
+          console.log('resta');
+          return value - 1;
+        } else {
+          console.log('igual');
           return value;
         }
       }

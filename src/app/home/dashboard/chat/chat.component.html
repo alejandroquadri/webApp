@@ -7,8 +7,8 @@
           <div class="chat-bubble {{ msg.uid === profileObject.$key? 'left':'right' }}">
             <div class="message">{{ msg.content }}</div>
             <div class="message-detail">
-                <span style="font-weight:bold;">{{ msg.uid === profileObject.$key? profileObject.displayName: patientProfile.displayName }}</span>,
-                <span>{{ msg.timestamp | momentFromNow }}</span>
+                <span class="alias">{{ msg.uid === profileObject.$key? profileObject.displayName: patientProfile.displayName }}</span>,
+                <span class="time">{{ msg.timestamp | momentFromNow }}</span>
             </div>
           </div>
       </div>

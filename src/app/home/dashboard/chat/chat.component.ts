@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFire,  } from 'angularfire2';
 import * as moment from 'moment';
 
-import { ProfileService, ChatService, PatientProfileService } from '../../../shared';
+import { ProfileService, ChatService, PatientProfileService, ActivityService } from '../../../shared';
 
 @Component({
   selector: 'app-chat',
@@ -27,7 +27,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     private router: Router,
     public profileService: ProfileService,
     public chatService: ChatService,
-    public patientProfileService: PatientProfileService
+    public patientProfileService: PatientProfileService,
+    public activityService: ActivityService
 ) {
     this.profileService.getProfile()
     .subscribe(prof => {
@@ -64,6 +65,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.chatService.pushMsg(this.chatUid, form)
       .then (
         (ret) => {
+          this.activityService.updateUnreadPatientMsgs(this.patientUid, true)
+          .then( _ => console.log('sumo uno'));
           console.log('msg sent', ret);
           this.message.nativeElement.value = '';
         },

@@ -3,6 +3,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 
 import { AuthService } from './auth.service';
+import { ActivityService } from './activity.service';
 
 @Injectable()
 export class ChatService {
@@ -11,7 +12,8 @@ export class ChatService {
 
   constructor(
     public af: AngularFire,
-    public authService: AuthService
+    public authService: AuthService,
+    public activityService: ActivityService
   ) {}
 
   getChat(chatUid: string): FirebaseListObservable<any[]> {
@@ -41,11 +43,13 @@ export class ChatService {
     if (this.chat) {this.chat.off(); }
     this.chat = firebase.database().ref(`/chats/${chatUid}`);
     this.chat.on('child_added', (data) => {
-      if (author !== data.val().uid) {
+      if ((author !== data.val().uid) && (data.val().read === false)) {
         this.chat.child(data.key).update({read: true})
         .then(() => console.log('updated'),
           err => console.log('error')
         );
+        this.activityService.updateUnreadCoachMsgs(data.val().uid, false)
+        .then( () => console.log('resto uno'));
       }
     });
   }

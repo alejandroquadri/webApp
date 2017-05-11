@@ -23,7 +23,7 @@ export class PatientListComponent implements OnInit {
     private profileService: ProfileService
   ) {
     this.patients = this.plService.patientList;
-    this.pendingReviews = this.activityService.getPendingReviews();
+    this.pendingReviews = this.activityService.getActivity();
     this.profileService.getProfile().subscribe(prof => {
       this.profile = prof;
     });

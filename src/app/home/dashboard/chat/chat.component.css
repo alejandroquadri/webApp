@@ -39,8 +39,18 @@ img.profile-pic.right {
 }
 
 .message-detail {
-  white-space: nowrap;
   font-size: 14px;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.alias {
+  font-size: 12px;
+  font-weight:bold;
+}
+
+.time {
+  font-size: 10px;
 }
 
 .chat-bubble {
