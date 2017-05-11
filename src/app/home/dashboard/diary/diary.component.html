@@ -53,6 +53,10 @@
 								(click)= "rate('ok', log.$key, item.$key)"
 								[ngClass] = "{ 'OKselected': (item.rate === 'ok'? true : false) }" ></i>
 
+								<i class="fa fa-minus-circle reviewIcon" aria-hidden="true"
+								(click)= "rate('regular', log.$key, item.$key)"
+								[ngClass] = "{ 'regular': (item.rate === 'regular'? true : false) }" ></i>
+
 								<i class="fa fa-times-circle reviewIcon" aria-hidden="true"
 								(click)= "rate('notok', log.$key, item.$key)"
 								[ngClass] = "{ 'notOKselected': (item.rate === 'notok'? true : false) }"></i>
