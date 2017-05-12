@@ -1,3 +1,12 @@
+.profileContainer {
+  display: flex;
+  height: 100%;
+}
+
+.profile {
+	overflow: auto;
+}	
+
 .avatar {
 	margin: 2vh 0 2vh 0;
 }

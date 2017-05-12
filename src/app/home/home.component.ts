@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
     public authService: AuthService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('entre a home');
+  }
 
   logOut() {
     console.log('logout');

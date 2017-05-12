@@ -1,11 +1,16 @@
 <div class="container-fluid">
 
-	<div class="header"><app-header></app-header></div>
-	<div class="main"
-	[ngClass] = "{'mainUnlogged' : !logged }"
-	><router-outlet></router-outlet></div>
-	<div
-	[ngClass] = "{'footerUnlogged' : !logged }"><app-footer></app-footer></div>
+	<div class="header">
+		<app-header></app-header>
+	</div>
+	
+	<div class="main" [ngClass] = "{'mainUnlogged' : !logged }">
+		<router-outlet></router-outlet>
+	</div>
+
+	<div [ngClass] = "{'footerUnlogged' : !logged }">
+		<app-footer></app-footer>
+	</div>
 
 </div>
 

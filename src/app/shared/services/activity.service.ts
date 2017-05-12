@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 import * as firebase from 'firebase';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class ActivityService {
 
-  // patientListSubject = new Subject();
-  // patientList = this.patientListSubject.asObservable();
+  activitySubject = new ReplaySubject(1);
+  activityObs = this.activitySubject.asObservable();
+  activity: any;
 
   constructor(
     public af: AngularFire,
     public authService: AuthService
-  ) {}
+  ) {
+    this.getActivity().subscribe( activity => {
+      this.activitySubject.next(activity);
+      this.activity = activity;
+    });
+  }
 
   getActivity(): FirebaseObjectObservable<any> {
     return this.af.database.object(`/activity/coaches/${this.authService.current.uid}`);

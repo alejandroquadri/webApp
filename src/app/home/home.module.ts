@@ -12,7 +12,6 @@ import { PatientProfileComponent } from './dashboard/patient-profile/patient-pro
 import {
   SharedModule,
   AuthGuard,
-  ObjectIteratePipe
 } from '../shared';
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([

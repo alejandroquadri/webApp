@@ -30,10 +30,8 @@ export class ProfileComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log('upload image', this.file);
    this.profileService.getProfile()
     .subscribe(prof => {
-      console.log('profile component pide el fireProfile', prof);
       this.profileForm.patchValue(prof);
       this.profileObject = prof;
     });
@@ -51,7 +49,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submit', this.profileForm.value);
     this.update(this.profileForm.value);
   }
 

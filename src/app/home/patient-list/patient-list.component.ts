@@ -12,6 +12,7 @@ import { PatientListService, ActivityService, ProfileService } from '../../share
 export class PatientListComponent implements OnInit {
 
   patients: any;
+  patientList: any;
   pendingReviews: any;
   profile: any;
   patientTodo = {};
@@ -23,16 +24,17 @@ export class PatientListComponent implements OnInit {
     private profileService: ProfileService
   ) {
     this.patients = this.plService.patientList;
-    this.pendingReviews = this.activityService.getActivity();
+    this.pendingReviews = this.activityService.activityObs;
     this.profileService.getProfile().subscribe(prof => {
       this.profile = prof;
     });
   }
 
   ngOnInit() {
-    const list = this.patients
+    this.plService.patientList
     .take(1)
     .subscribe( pList => {
+      console.log('se suscribe', pList);
       this.router.navigate(['/dashboard', pList[0].$key, 'diary']);
     });
   }

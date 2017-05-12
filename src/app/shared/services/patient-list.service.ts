@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
-import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class PatientListService {
 
-  patientListSubject = new Subject();
+  patientListSubject = new ReplaySubject(1);
   patientList = this.patientListSubject.asObservable();
+  list: any;
 
   constructor(
     public af: AngularFire,
@@ -17,6 +18,7 @@ export class PatientListService {
   ) {
     this.getPatientList().subscribe( patients => {
       this.patientListSubject.next(patients);
+      this.list = patients;
     });
   }
 
