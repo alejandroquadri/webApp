@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { AuthService } from './auth.service';
+import { ProfileService } from './profile.service';
 
 @Injectable()
 export class ActivityService {
@@ -14,7 +15,8 @@ export class ActivityService {
 
   constructor(
     public af: AngularFire,
-    public authService: AuthService
+    public authService: AuthService,
+    public profileService: ProfileService
   ) {
     this.getActivity().subscribe( activity => {
       this.activitySubject.next(activity);
@@ -74,6 +76,21 @@ export class ActivityService {
         }
       }
     });
+  }
+
+  addActivityFeed(patientUid: string, date: string, key: string, type: string, message?: string) {
+    let form, text;
+    if ( type === 'review') { text = `${this.profileService.current.displayName} te envia feedback sobre tu comida`; }
+    if ( type === 'mes') { text = message; }
+
+    form = {
+      date: date,
+      key: key,
+      text: text,
+      read: false
+    };
+    return this.af.database.list(`/activity/patients/${patientUid}/feed`)
+    .push(form);
   }
 
 }

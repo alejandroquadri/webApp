@@ -50,6 +50,7 @@ export class DiaryComponent implements OnInit {
       .then( ret => {
         this.review.nativeElement.value = '';
         console.log('review guardado');
+        this.activityService.addActivityFeed(this.patientUid, date, key, 'mes', form.message);
       });
     } else  { console.log('no manda, vacio'); }
   }
@@ -59,7 +60,10 @@ export class DiaryComponent implements OnInit {
       rate: rate
     };
     this.diaryService.updateEntry(this.patientUid, date, key, form)
-    .then( () => console.log('meal has been rated'));
+    .then( () => {
+      console.log('meal has been rated');
+      this.activityService.addActivityFeed(this.patientUid, date, key, 'review');
+    });
   }
 
   checkClick() {
