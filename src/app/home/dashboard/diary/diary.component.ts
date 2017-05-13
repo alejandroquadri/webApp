@@ -51,6 +51,7 @@ export class DiaryComponent implements OnInit {
         this.review.nativeElement.value = '';
         console.log('review guardado');
         this.activityService.addActivityFeed(this.patientUid, date, key, 'mes', form.message);
+        this.activityService.updateUnseenReview(this.patientUid);
       });
     } else  { console.log('no manda, vacio'); }
   }
@@ -63,6 +64,7 @@ export class DiaryComponent implements OnInit {
     .then( () => {
       console.log('meal has been rated');
       this.activityService.addActivityFeed(this.patientUid, date, key, 'review');
+      this.activityService.updateUnseenReview(this.patientUid);
     });
   }
 

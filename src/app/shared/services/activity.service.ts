@@ -80,7 +80,7 @@ export class ActivityService {
 
   addActivityFeed(patientUid: string, date: string, key: string, type: string, message?: string) {
     let form, text;
-    if ( type === 'review') { text = `${this.profileService.current.displayName} te envia feedback sobre tu comida`; }
+    if ( type === 'review') { text = `${this.profileService.current.displayName} te envia feedback`; }
     if ( type === 'mes') { text = message; }
 
     form = {
@@ -91,6 +91,13 @@ export class ActivityService {
     };
     return this.af.database.list(`/activity/patients/${patientUid}/feed`)
     .push(form);
+  }
+
+  updateUnseenReview(patientUid: string) {
+    return firebase.database().ref(`/activity/patients/${patientUid}/unReadFeed`)
+    .transaction( value => {
+      return value + 1;
+    });
   }
 
 }
